@@ -1,9 +1,9 @@
 import styles from './SubHeader.module.css'
 
-interface HeaderProps {
+interface SubHeaderProps {
   title: string
 }
 
-export default function SubHeader({ title }: HeaderProps) {
-  return <h1 className={styles.subHeader}>{title}</h1>
+export default function SubHeader({ title }: SubHeaderProps) {
+  return <h2 className={`${styles.subHeader} py-3 text-center`}>{title}</h2>
 }

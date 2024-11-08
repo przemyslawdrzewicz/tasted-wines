@@ -5,5 +5,5 @@ interface HeaderProps {
 }
 
 export default function Header({ title }: HeaderProps) {
-  return <h1 className={styles.header}>{title}</h1>
+  return <h1 className={`${styles.header} py-3 text-center`}>{title}</h1>
 }

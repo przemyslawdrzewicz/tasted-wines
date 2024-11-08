@@ -1,0 +1,19 @@
+.upload {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload div {
+  width: 100px;
+  line-height: 28px;
+  letter-spacing: 0.24rem;
+  font-size: 14px;
+}
+
+.normalBorder {
+  border: 1px solid rgba(255, 255, 255, 0.298);
+}

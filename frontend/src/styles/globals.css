@@ -32,3 +32,15 @@ body {
     text-wrap: balance;
   }
 }
+
+.error {
+  padding-top: 10px;
+  padding-left: 25px;
+  height: 20px;
+  color: rgb(249, 47, 47);
+  font-size: 14px;
+}
+
+.errorBorder {
+  border: 1px solid rgba(249, 47, 47, 0.383);
+}

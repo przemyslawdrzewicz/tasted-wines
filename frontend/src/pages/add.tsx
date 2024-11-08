@@ -1,5 +1,14 @@
 import Layout from '@/components/layouts/Layout'
+import Header from '@/components/ui/header/Header'
+import SubHeader from '@/components/ui/subheader/SubHeader'
+import WineForm from '@/components/wines/forms/WineForm'
 
 export default function Add() {
-  return <Layout>test</Layout>
+  return (
+    <Layout>
+      <Header title="Add wine" />
+      <SubHeader title="Share some wine" />
+      <WineForm />
+    </Layout>
+  )
 }
