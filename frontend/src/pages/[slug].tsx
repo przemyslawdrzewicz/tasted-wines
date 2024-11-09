@@ -13,10 +13,9 @@ export default function Edit() {
   const [wine, setWine] = useState<Wine | null>(null)
 
   const fetchWine = async (id: string) => {
-    const wineResponse = await fetch('/api/wines/')
-    const wines = await wineResponse.json()
-    const wineItem = wines.find((wine: Wine) => wine.id === id)
-    setWine(wineItem)
+    const wineResponse = await fetch(`/api/wines/${id}/`)
+    const wine = await wineResponse.json()
+    setWine(wine)
   }
 
   useEffect(() => {

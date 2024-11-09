@@ -20,13 +20,13 @@ const generateTimestampKey = () => {
   return Math.random().toString(36).substr(2, 9)
 }
 
-const getFileNameFromUrl = (url) => {
-  const match = url.match(/\/o\/([^?]+)/); // Match everything after "/o/" and before the query string
+const getFileNameFromUrl = (url: string) => {
+  const match = url.match(/\/o\/([^?]+)/)
   if (match) {
-    return match[1]; // Return the matched file name (without the query parameters)
+    return match[1]
   }
-  return null;
-};
+  return null
+}
 
 const wineRest = {
   get: async () => {
@@ -62,19 +62,22 @@ const wineRest = {
   patch: async (body: Wine) => {
     const { image, id } = body
 
-    let name, file
+    let name: string = ''
+    let file: File | null = null
+
     if(typeof image === 'object') {
-      name = image?.name
-      file = image?.file
-    }
+      name = image?.name || ''
+      file = image?.file || null
+    } else if(typeof image === 'string')
+      name = getFileNameFromUrl(image) || ''
 
     const editWine = async () => {
-      const data = { ...body, image: getFileNameFromUrl(image) }
-      const washingtonRef = doc(db, DB_NAME, id);
-      await updateDoc(washingtonRef, data);
+      const data = { ...body, image: name }
+      const washingtonRef = doc(db, DB_NAME, id)
+      await updateDoc(washingtonRef, data)
     }
 
-    if(!name || !file) {
+    if(!file) {
       editWine()
       return
     }
@@ -95,6 +98,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
   switch(method) {
     case 'GET': {
+      console.log(request, 'request?')
       const wines = await wineRest.get()
       response.status(200).json(wines)
       break
