@@ -1,5 +1,5 @@
 import Button from '@/components/ui/button/Button'
-import Form from '@/components/ui/form/form'
+import Form from '@/components/ui/form/Form'
 import Input from '@/components/ui/input/Input'
 import Upload from '@/components/ui/upload/Upload'
 import { useEffect, useRef, useState } from 'react'
