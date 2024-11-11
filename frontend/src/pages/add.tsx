@@ -3,7 +3,7 @@ import Header from '@/components/ui/header/Header'
 import SubHeader from '@/components/ui/subheader/SubHeader'
 import WineForm from '@/components/wines/forms/WineForm'
 
-export default function Add() {
+const Add = () => {
   return (
     <Layout>
       <Header title="Add wine" />
@@ -12,3 +12,5 @@ export default function Add() {
     </Layout>
   )
 }
+
+export default Add

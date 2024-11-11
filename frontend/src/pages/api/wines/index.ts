@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { db, storage } from '@/utils/firestore'
+import { db, storage } from '@/utils/firestone'
 import { getDocs, collection, setDoc, doc, updateDoc } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 import { DocumentData } from 'firebase/firestore'

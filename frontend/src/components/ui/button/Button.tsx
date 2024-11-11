@@ -11,13 +11,13 @@ interface ButtonProps {
   onClick?: () => void
 }
 
-export default function Button({
+const Button = ({
   children,
   variant = 'text',
   color,
   to,
   onClick,
-}: ButtonProps) {
+}: ButtonProps) => {
   const router = useRouter()
 
   const variantClass = () => {
@@ -40,10 +40,8 @@ export default function Button({
   }
 
   const onButtonClicked = () => {
-    if (!to) {
-      onClick()
-      return
-    }
+    if (onClick) onClick()
+    if (!to) return
     router.push(to)
   }
 
@@ -57,3 +55,5 @@ export default function Button({
     </button>
   )
 }
+
+export default Button

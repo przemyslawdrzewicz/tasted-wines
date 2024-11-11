@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Wine } from '@/interfaces/wine'
 
-export default function Edit() {
+const Edit = () => {
   const router = useRouter()
-  const { slug } = router.query
+  const { id } = router.query
 
   const [wine, setWine] = useState<Wine | null>(null)
 
@@ -19,8 +19,8 @@ export default function Edit() {
   }
 
   useEffect(() => {
-    if (slug && typeof slug === 'string') fetchWine(slug)
-  }, [slug])
+    if (id && typeof id === 'string') fetchWine(id)
+  }, [id])
 
   if (!wine) return <div>Loading ...</div>
 
@@ -32,3 +32,5 @@ export default function Edit() {
     </Layout>
   )
 }
+
+export default Edit

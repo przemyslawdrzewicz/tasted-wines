@@ -8,7 +8,7 @@ interface CardProps {
   image: string
 }
 
-export default function Card({ name, year, grape, image }: CardProps) {
+const Card = ({ name, year, grape, image }: CardProps) => {
   return (
     <div className={styles.card}>
       <Image
@@ -24,3 +24,5 @@ export default function Card({ name, year, grape, image }: CardProps) {
     </div>
   )
 }
+
+export default Card

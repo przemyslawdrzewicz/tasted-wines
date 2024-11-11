@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { db, storage } from '@/utils/firestore'
-import { doc, getDoc } from 'firebase/firestore'
-import { ref, getDownloadURL } from 'firebase/storage'
+import { db, storage } from '@/utils/firestone'
+import { doc, getDoc, deleteDoc } from 'firebase/firestore'
+import { ref, getDownloadURL, deleteObject } from 'firebase/storage'
 import { DocumentData } from 'firebase/firestore'
 import { Wine } from '@/interfaces/wine'
 
@@ -22,11 +22,19 @@ const wineRest = {
     const winePromise = await prepareWine(querySnapshot)
     return winePromise
   },
+  delete: async (id: string, body: Wine) => {
+    if(typeof body.image !== 'string') return
+
+    await deleteDoc(doc(db, DB_NAME, id))
+
+    const imageRef = ref(storage, body.image)
+    await deleteObject(imageRef)
+  }
 }
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   const { id } = request.query
-  const { method } = request
+  const { method, body } = request
 
   if(typeof id !== 'string') return
 
@@ -34,6 +42,11 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     case 'GET': {
       const wine = await wineRest.get(id)
       response.status(200).json(wine)
+      break
+    }
+    case 'DELETE': {
+      await wineRest.delete(id, body)
+      response.status(200)
       break
     }
   }
