@@ -20,9 +20,11 @@ const Form = forwardRef<FormRef, FormProps>(({ children }, ref) => {
   const childrenWithRefs = React.Children.map(children, createChildWithRef)
 
   const validateForm = () =>
-    childrenWithRefs.every(
-      ({ ref }) => !ref || !!(ref as RefObject<FormRef>).current?.validate()
-    )
+    childrenWithRefs
+      .map(
+        ({ ref }) => !ref || !!(ref as RefObject<FormRef>).current?.validate()
+      )
+      .every((validation) => validation)
 
   useImperativeHandle(ref, () => ({
     validate() {

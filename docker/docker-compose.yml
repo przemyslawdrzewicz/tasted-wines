@@ -1,0 +1,8 @@
+# version: "1"
+services:
+  wine-prod:
+    build:
+      context: ../frontend/
+      dockerfile: ../docker/Dockerfile
+    ports:
+      - "3000:3000"

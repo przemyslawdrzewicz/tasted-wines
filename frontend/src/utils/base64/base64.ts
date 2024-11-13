@@ -9,7 +9,7 @@ const fileToBase64 = (file: File) => {
     })
   }
 
-  const base64ToFile = (base64Data, filename: string) => {
+  const base64ToFile = (base64Data: string, filename: string) => {
     const base64 = base64Data.split(',')[1]; 
   
     const byteCharacters = atob(base64)

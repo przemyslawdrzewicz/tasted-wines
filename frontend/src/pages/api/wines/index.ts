@@ -98,7 +98,6 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
   switch(method) {
     case 'GET': {
-      console.log(request, 'request?')
       const wines = await wineRest.get()
       response.status(200).json(wines)
       break
